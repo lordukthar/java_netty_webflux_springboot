@@ -71,6 +71,10 @@ public class WebClientConfiguration {
                                 if (context.hasKey("Authorization")) {
                                    httpHeaders.add("Authorization", context.get("Authorization"));
                                 }
+
+                                if (context.hasKey("X-Custom-Header")) {
+                                    httpHeaders.add("X-Custom-Header", context.get("X-Custom-Header"));
+                                }
                             })
                             .build();
                     return exchangeFunction.exchange(newRequest);

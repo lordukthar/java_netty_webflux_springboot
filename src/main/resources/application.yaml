@@ -2,4 +2,4 @@ spring:
   webflux:
     base-path: aja
 proxy:
-  use: true
+  use: false

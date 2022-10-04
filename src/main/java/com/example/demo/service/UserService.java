@@ -6,6 +6,7 @@ import com.example.demo.errors.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
@@ -36,5 +37,9 @@ public class UserService {
 
     public Mono<User> findClientUserById(Long userId) {
         return webJsonClient.getUser(userId);
+    }
+
+    public Flux<User> findUsers() {
+        return webJsonClient.getUsers();
     }
 }

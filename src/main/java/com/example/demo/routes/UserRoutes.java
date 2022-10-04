@@ -31,10 +31,17 @@ public class UserRoutes {
     }
 
     @Bean
+    RouterFunction<ServerResponse> getUser() {
+        return route(GET("/users/xxx/{id}"),
+                req -> ok().body(
+                        userService.findUserById(100L), User.class));
+    }
+
+    @Bean
     RouterFunction<ServerResponse> getUsers() {
         return route(GET("/users"),
                 req -> ok().body(
-                        userService.findUserById(100L), User.class));
+                        userService.findUsers(), User.class));
     }
 
 
