@@ -5,6 +5,7 @@ import com.example.demo.filter.WebClientFilters;
 import io.netty.handler.logging.LogLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
@@ -24,6 +25,8 @@ public class WebClientConfiguration {
     private static final Logger LOG = LoggerFactory.getLogger(WebClientConfiguration.class);
     private String proxyHost = "trend3.sbab.ad";
     private int proxyPort = 8080;
+    @Value("${proxy.use}")
+    boolean useProxy;
 
     @Bean
     public ExchangeFilterFunction demoLambdaFilter() {
@@ -81,13 +84,21 @@ public class WebClientConfiguration {
                                    Function<String, ExchangeFilterFunction> headerFilterFunction,
                                    ExchangeFilterFunction headerFilter) {
 
-        HttpClient httpClient =
-                HttpClient.create()
-                        .wiretap("reactor.netty.http.client.HttpClient",
-                                LogLevel.INFO, AdvancedByteBufFormat.TEXTUAL)
-                        .proxy(proxy -> proxy.type(ProxyProvider.Proxy.HTTP)
-                                .host(proxyHost)
-                                .port(proxyPort));;
+        HttpClient httpClient = null;
+
+
+        if (useProxy) {
+            httpClient = HttpClient.create()
+                    .wiretap("reactor.netty.http.client.HttpClient",
+                            LogLevel.INFO, AdvancedByteBufFormat.TEXTUAL)
+                    .proxy(proxy -> proxy.type(ProxyProvider.Proxy.HTTP)
+                            .host(proxyHost)
+                            .port(proxyPort));;
+        } else {
+            httpClient = HttpClient.create()
+                    .wiretap("reactor.netty.http.client.HttpClient",
+                            LogLevel.INFO, AdvancedByteBufFormat.TEXTUAL);
+        }
 
         return WebClient.builder()
                // .filter(WebClientFilters.demoFilter())
