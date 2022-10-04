@@ -40,7 +40,7 @@ public class WebClientConfiguration {
                     ClientRequest newRequest = ClientRequest
                             .from(clientRequest)
                             .headers(httpHeaders -> {
-                                System.out.println("FOO headerFilterFunction");
+                                System.out.println("FOO Filter 4: headerFilterFunction");
                                 if (context.hasKey("APA")) {
                                     System.out.println("FOO headerFilterFunction FOUND");
                                     httpHeaders.add("NEWE_APA", context.get("APA"));
@@ -59,7 +59,7 @@ public class WebClientConfiguration {
     public ExchangeFilterFunction headerFilter() {
         return (clientRequest, exchangeFunction) -> Mono.deferContextual(Mono::just)
                 .flatMap(context -> {
-                    System.out.println("FOO headerFilter");
+                    System.out.println("FOO Filter 3: headerFilter");
 
                     ClientRequest newRequest = ClientRequest
                             .from(clientRequest)
@@ -109,7 +109,7 @@ public class WebClientConfiguration {
             //.clientConnector(new JettyClientHttpConnector())
             .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .filters(exchangeFilterFunctions -> {
-                  //  exchangeFilterFunctions.add(demoLambdaFilter);
+                    exchangeFilterFunctions.add(demoLambdaFilter);
                     exchangeFilterFunctions.add(headerFilter);
                     exchangeFilterFunctions.add(headerFilterFunction.apply("APA"));
                 })

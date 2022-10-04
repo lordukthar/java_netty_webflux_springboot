@@ -13,7 +13,7 @@ public class ExampleWebFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange serverWebExchange,
                              WebFilterChain webFilterChain) {
 
-        System.out.println("FOO ExampleWebFilter");
+        System.out.println("FOO Filter 1: ExampleWebFilter");
 
         serverWebExchange.getResponse()
                 .getHeaders().add("web-filter", "web-filter-test");

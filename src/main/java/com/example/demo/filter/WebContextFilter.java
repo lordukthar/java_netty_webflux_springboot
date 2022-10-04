@@ -18,7 +18,7 @@ public class WebContextFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        System.out.println("WebContextFilter");
+        System.out.println("FOO Filter 2: WebContextFilter");
 
         String string = exchange.getRequest().getHeaders().get("Authorization").get(0);
 
