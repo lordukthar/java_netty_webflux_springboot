@@ -13,6 +13,7 @@ import org.springframework.http.codec.json.Jackson2JsonEncoder;
 import org.springframework.web.reactive.function.client.*;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
+import reactor.netty.transport.ProxyProvider;
 import reactor.netty.transport.logging.AdvancedByteBufFormat;
 
 import java.util.function.Function;
@@ -21,8 +22,8 @@ import java.util.function.Function;
 public class WebClientConfiguration {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebClientConfiguration.class);
-
-
+    private String proxyHost = "trend3.sbab.ad";
+    private int proxyPort = 8080;
 
     @Bean
     public ExchangeFilterFunction demoLambdaFilter() {
@@ -83,7 +84,10 @@ public class WebClientConfiguration {
         HttpClient httpClient =
                 HttpClient.create()
                         .wiretap("reactor.netty.http.client.HttpClient",
-                                LogLevel.INFO, AdvancedByteBufFormat.TEXTUAL);
+                                LogLevel.INFO, AdvancedByteBufFormat.TEXTUAL)
+                        .proxy(proxy -> proxy.type(ProxyProvider.Proxy.HTTP)
+                                .host(proxyHost)
+                                .port(proxyPort));;
 
         return WebClient.builder()
                // .filter(WebClientFilters.demoFilter())
