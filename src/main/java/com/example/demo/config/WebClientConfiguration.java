@@ -93,9 +93,9 @@ public class WebClientConfiguration {
 
         HttpClient httpClient = null;
 
-        System.out.println("FOO" + activeProfile);
+        System.out.println("FOO: " + activeProfile + " useProxy: " + useProxy);
 
-        if (activeProfile.equals("proxy")) {
+        if (useProxy) {
             httpClient = HttpClient.create()
                     .wiretap("reactor.netty.http.client.HttpClient",
                             LogLevel.INFO, AdvancedByteBufFormat.TEXTUAL)

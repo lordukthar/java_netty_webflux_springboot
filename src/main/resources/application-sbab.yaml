@@ -7,4 +7,4 @@ spring:
     password: Pkurlips1
     driverClassName: com.mysql.cj.jdbc.Driver
 proxy:
-  use: false
+  use: true
