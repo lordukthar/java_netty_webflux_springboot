@@ -1,6 +1,6 @@
 spring:
   r2dbc:
-    url: r2dbc:oracle:thin://(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle1-dsn-tst.sbab.ad)(PORT=1522))(ADDRESS=(PROTOCOL=TCP)(HOST=oracle2-dsn-tst.sbab.ad)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=SBTEST_PRIM)))
+    url: r2dbc:oracle:thin://(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=xxx)(PORT=1522))(ADDRESS=(PROTOCOL=TCP)(HOST=xxx)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=SBTEST_PRIM)))
     username: CIA_TEST_SERVICE_SYS
     password: CIA_TEST_SERVICE_SYS
   webflux:
@@ -13,7 +13,7 @@ spring:
   flyway:
     baselineOnMigrate: true
     validateOnMigrate: false
-    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle1-dsn-tst.sbab.ad)(PORT=1522))(ADDRESS=(PROTOCOL=TCP)(HOST=oracle2-dsn-tst.sbab.ad)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=SBTEST_PRIM)))
+    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=xxxx)(PORT=1522))(ADDRESS=(PROTOCOL=TCP)(HOST=xxx)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=SBTEST_PRIM)))
     user: CIA_TEST_SERVICE_SYS
     password: CIA_TEST_SERVICE_SYS
     enabled: true
