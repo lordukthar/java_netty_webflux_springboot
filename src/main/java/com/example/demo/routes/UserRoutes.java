@@ -49,7 +49,7 @@ public class UserRoutes {
     RouterFunction<ServerResponse> getUsersFromDB() {
         return route(GET("/users-db"),
                 req -> ok().body(
-                        userService.findUsersFromDatabase(), UserEntity.class));
+                        userService.findUsersFromDatabase(), User.class));
     }
 
 
