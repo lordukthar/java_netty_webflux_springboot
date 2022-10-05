@@ -1,0 +1,10 @@
+spring:
+  webflux:
+    base-path: aja
+  datasource:
+    url: jdbc:mysql://localhost:6603/bs_jonas?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: bs
+    password: Pkurlips1
+    driverClassName: com.mysql.cj.jdbc.Driver
+proxy:
+  use: false

@@ -27,14 +27,14 @@ public class UserRoutes {
     RouterFunction<ServerResponse> getUserByIdRoute() {
         return route(GET("/users/{id}"),
                 req -> ok().body(
-                        userService.findClientUserById(Long.valueOf(req.pathVariable("id"))), User.class));
+                        userService.findUserById(Long.valueOf(req.pathVariable("id"))), User.class));
     }
 
     @Bean
-    RouterFunction<ServerResponse> getUser() {
-        return route(GET("/users/xxx/{id}"),
+    RouterFunction<ServerResponse> getUserByIdFromMapRoute() {
+        return route(GET("/users/map/{id}"),
                 req -> ok().body(
-                        userService.findUserById(100L), User.class));
+                        userService.findUserByIdFromMap(100L), User.class));
     }
 
     @Bean
@@ -42,6 +42,13 @@ public class UserRoutes {
         return route(GET("/users"),
                 req -> ok().body(
                         userService.findUsers(), User.class));
+    }
+
+    @Bean
+    RouterFunction<ServerResponse> getUsersFromDB() {
+        return route(GET("/users-db"),
+                req -> ok().body(
+                        userService.findUsersFromDatabase(), User.class));
     }
 
 

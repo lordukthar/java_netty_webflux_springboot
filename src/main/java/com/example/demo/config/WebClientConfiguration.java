@@ -28,6 +28,9 @@ public class WebClientConfiguration {
     @Value("${proxy.use}")
     boolean useProxy;
 
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
+
     @Bean
     public ExchangeFilterFunction demoLambdaFilter() {
         ExchangeFilterFunction filterFunction = (clientRequest, nextFilter) -> {
@@ -90,8 +93,9 @@ public class WebClientConfiguration {
 
         HttpClient httpClient = null;
 
+        System.out.println("FOO" + activeProfile);
 
-        if (useProxy) {
+        if (activeProfile.equals("proxy")) {
             httpClient = HttpClient.create()
                     .wiretap("reactor.netty.http.client.HttpClient",
                             LogLevel.INFO, AdvancedByteBufFormat.TEXTUAL)

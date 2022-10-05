@@ -1,5 +1,12 @@
 spring:
+  profiles:
+    active: no_proxy
   webflux:
     base-path: aja
+  datasource:
+    url:  jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
 proxy:
   use: false
