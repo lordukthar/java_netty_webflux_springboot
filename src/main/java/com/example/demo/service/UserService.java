@@ -48,9 +48,9 @@ public class UserService {
         return webJsonClient.getUsers();
     }
 
-    public Flux<User> findUsersFromDatabase() {
-        List<UserEntity> entities = userRepository.findAll();
-        return Flux.fromIterable(entities).map(this::map).subscribeOn(Schedulers.boundedElastic());
+    public Flux<UserEntity> findUsersFromDatabase() {
+        Flux<UserEntity> entities = userRepository.findAll();
+        return entities;//.fromIterable(entities).map(this::map).subscribeOn(Schedulers.boundedElastic());
     }
 
     private User map(UserEntity entity) {

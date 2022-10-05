@@ -1,17 +1,17 @@
 package com.example.demo.db.entity;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Entity
-@Table(name = "myusers")
+@Table(name = "USERS")
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column("ID")
     private Integer id;
 
-    @Column(name = "NAME", length = 36)
+    @Column("NAME")
     private String name;
 
     public UserEntity() {

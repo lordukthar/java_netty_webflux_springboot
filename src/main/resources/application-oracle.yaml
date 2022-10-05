@@ -1,0 +1,21 @@
+spring:
+  r2dbc:
+    url: r2dbc:oracle:thin://(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle1-dsn-tst.sbab.ad)(PORT=1522))(ADDRESS=(PROTOCOL=TCP)(HOST=oracle2-dsn-tst.sbab.ad)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=SBTEST_PRIM)))
+    username: CIA_TEST_SERVICE_SYS
+    password: CIA_TEST_SERVICE_SYS
+  webflux:
+    base-path: aja
+  datasource:
+    url: jdbc:mysql://localhost:6603/bs_jonas?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: bs
+    password: Pkurlips1
+    driverClassName: com.mysql.cj.jdbc.Driver
+  flyway:
+    baselineOnMigrate: true
+    validateOnMigrate: false
+    url: jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle1-dsn-tst.sbab.ad)(PORT=1522))(ADDRESS=(PROTOCOL=TCP)(HOST=oracle2-dsn-tst.sbab.ad)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=SBTEST_PRIM)))
+    user: CIA_TEST_SERVICE_SYS
+    password: CIA_TEST_SERVICE_SYS
+    enabled: true
+proxy:
+  use: true

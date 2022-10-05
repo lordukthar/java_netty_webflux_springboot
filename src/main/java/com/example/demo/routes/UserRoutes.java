@@ -1,6 +1,7 @@
 package com.example.demo.routes;
 
 import com.example.demo.api.User;
+import com.example.demo.db.entity.UserEntity;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +49,7 @@ public class UserRoutes {
     RouterFunction<ServerResponse> getUsersFromDB() {
         return route(GET("/users-db"),
                 req -> ok().body(
-                        userService.findUsersFromDatabase(), User.class));
+                        userService.findUsersFromDatabase(), UserEntity.class));
     }
 
 
